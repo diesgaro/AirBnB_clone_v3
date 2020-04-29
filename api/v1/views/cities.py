@@ -50,7 +50,7 @@ def delete_task8(city_id):
 
 @app_views.route("/states/<states_id>/cities", strict_slashes=False,
                  methods=['POST'])
-def post_task8():
+def post_task8(state_id):
     """Create new city"""
     state_by_id = storage.get(State, state_id)
     if state_by_id is None:
