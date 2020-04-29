@@ -25,7 +25,8 @@ def get_tasks7(state_id):
     return jsonify(state_by_id.to_dict())
 
 
-@app_views.route('/states/<state_id>', strict_slashes=False, methods=['DELETE'])
+@app_views.route('/states/<state_id>', strict_slashes=False,
+                 methods=['DELETE'])
 def delete_task7(state_id):
     """Deleting a specific state by id"""
     state_by_id = storage.get(State, state_id)
