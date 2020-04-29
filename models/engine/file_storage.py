@@ -91,8 +91,7 @@ class FileStorage:
         Arguments:
             cls: Class name (optional)
         Returns:
-            the number of objects to the class, otherwise the number
-            of all objects in the storage
+            the number of objects, otherwise the number of all objects
         """
         __count = 0
 
