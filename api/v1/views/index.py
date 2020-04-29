@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Creating an Index
+Creating an Index to return the json status
 """
 
 
