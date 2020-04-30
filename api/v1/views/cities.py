@@ -4,16 +4,11 @@ View to handle all default RestFull API actions
 """
 
 
-from flask import jsonify, abort, request
+from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
 from models.state import State
 from models.city import City
-from models.base_model import BaseModel
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-from models.user import User
 
 
 @app_views.route('/states/<state_id>/cities', strict_slashes=False,
@@ -23,7 +18,7 @@ def get_tasks8(state_id):
     state_by_id = storage.get(State, state_id)
     if state_by_id is None:
         abort(404)
-    return jsonify(city.to_dict() for city in state_by_id.cities)
+    return jsonify([city.to_dict() for city in state_by_id.cities])
 
 
 @app_views.route('/cities/<city_id>/', strict_slashes=False,
@@ -43,9 +38,10 @@ def delete_task8(city_id):
     city_by_id = storage.get(City, city_id)
     if city_by_id is None:
         abort(404)
-    storage.delete(city_by_id)
-    storage.save()
-    return jsonify({}), 200
+    else:
+        storage.delete(city_by_id)
+        storage.save()
+        return jsonify({}), 200
    
 
 @app_views.route("/states/<states_id>/cities", strict_slashes=False,
