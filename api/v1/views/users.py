@@ -31,7 +31,7 @@ def get_task10(user_id):
 def delete_task10(user_id):
     """Deleting a specific user by id"""
     user_by_id = storage.get(User, user_id)
-    if city_by_id is None:
+    if user_by_id is None:
         abort(404)
     else:
         storage.delete(user_by_id)
