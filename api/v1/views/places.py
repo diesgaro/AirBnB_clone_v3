@@ -8,6 +8,7 @@ from flask import jsonify, abort, request
 from api.v1.views import app_views
 from models.place import Place
 from models.city import City
+from models.user import User
 from models import storage
 
 
@@ -95,8 +96,18 @@ def post_create_place(city_id):
         abort(400, 'Not a JSON')
     if 'name' not in new_requ:
         abort(400, 'Missing name')
+    if 'user_id' not in new_requ:
+        abort(400, 'Missing user_id')
+
+    user_id = new_requ['user_id']
+    user = storage.get(User, user_id)
+
+    if user is None:
+        abort(404)
+
     new_place = Place(**request.get_json())
     new_place.city_id = city_id
+    new_place.user_id = user.id
     storage.new(new_place)
     storage.save()
     return jsonify(new_place.to_dict()), 201
