@@ -44,7 +44,7 @@ def delete_task8(city_id):
         return jsonify({}), 200
 
 
-@app_views.route("/states/<states_id>/cities", strict_slashes=False,
+@app_views.route("/states/<state_id>/cities", strict_slashes=False,
                  methods=['POST'])
 def post_task8(state_id):
     """Create new city"""
