@@ -51,7 +51,7 @@ def post_task12(place_id):
     """Create new review"""
     place_by_id = storage.get(Place, place_id)
     if place_by_id is None:
-        abort(400)
+        abort(404)
     new_requ = request.get_json()
     if not new_requ:
         abort(400, 'Not a JSON')
